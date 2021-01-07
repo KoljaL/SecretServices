@@ -20,7 +20,7 @@ $debug_array['$dir_db']= $dir_db;
 $_SESSION['last_visit'] = time();
 if (!isset($_SESSION['last_visit'])) {$_SESSION['last_visit'] = time();}
 if ((time() - $_SESSION['last_visit']) > 300){session_destroy(); header('Location: '.$url);}
-if (isset($_GET['logout']) ){session_destroy(); header('Location: '.$url); exit;} 
+if (isset($_POST['logout']) ){session_destroy(); header('Location: '.$url); exit;} 
 if(!isset($_SESSION['logged_in'])){$_SESSION['logged_in'] = false;}
 /*_________________________________________________ SESSION _________________________________________________*/
 
@@ -94,10 +94,15 @@ if (isset($_SESSION['logged_in']) and $_SESSION['logged_in'] == true) {
 
   if(!is_file($db_file)){
       $content = '[
-        {"type": "main","name": "Orga","color": "#1e1e1e"},
-        {"type": "container","name": "Home","color": "red"},
-        {"type": "item","name": "Test1","container": "Home","url": "http://test.de","user": "","pw": ""},
-        {"type": "item","name": "Test2","container": "Home", "url": "http://test1.de","user": "","pw": ""} 
+        {"type": "main","name": "SecretServices","color": "#282C34"},
+        {"type": "container","name": "Venus","color": "#ff5458", "position": "20"},
+        {"type": "item","name": "gamma","container": "Venus","url": "..."},
+        {"type": "item","name": "alpha","container": "Venus","url": "..."},
+        {"type": "item","name": "betta","container": "Venus", "url": "..."},
+        {"type": "container","name": "Mars","color": "#ff5458", "position": "10"},
+        {"type": "item","name": "betta","container": "Mars", "url": "..."},  
+        {"type": "item","name": "gamma","container": "Mars","url": "..."},
+        {"type": "item","name": "alpha","container": "Mars","url": "..."}
       ]';         
       // file_put_contents($db_file, $content);     
       secure('encrypt', $_SESSION['password'], $db_file, $content);
@@ -131,32 +136,151 @@ if (isset($_SESSION['logged_in']) and $_SESSION['logged_in'] == true) {
 
 
 /*‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾ COLORS ‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾*/
+ 
+
+$Bright_Colors = array(
+    'Sizzling Red' =>     '#FF3855',
+    'Red Salsa' =>        '#FD3A4A',
+    'Tart Orange' =>      '#FB4D46',
+    'Orange Soda' =>      '#FA5B3D',
+    'Bright Yellow' =>    '#FFAA1D',
+    'Yellow Sunshine' =>  '#FFF700',
+    'Slimy Green' =>      '#299617',
+    'Green Lizard' =>     '#A7F432',
+    'Denim Blue' =>       '#2243B6',
+    'Blue Jeans' =>       '#5DADEC',
+    'Plump Purple' =>     '#5946B2',
+    'Purple Plum' =>      '#9C51B6',
+    'Fiery Rose' =>       '#FF5470',
+    'Sizzling Sunrise' => '#FFDB00',
+    'Heat Wave' =>        '#FF7A00',
+    'Lemon Glacier' =>    '#FDFF00',
+    'Spring Frost' =>     '#87FF2A',
+    'Absolute Zero' =>    '#0048BA',
+    'Winter Sky' =>       '#FF007C',
+    'Frostbite' =>        '#E936A7');
+ 
+ 
+    // ONEDARK alike
 $colors = array(
-    'lightstgrey' => '#cbe3e7',
-    'background' => '#1e1c31',
-    'almostwhite' => '#fbfcfc',
-    'darkgrey' => '#565575',
-    'black' => '#100e23',
-    'salomon' => '#ff8080',
-    'red' => '#ff5458',
-    'lime' => '#95ffa4',
-    'green' => '#62d196',
-    'sienna' => '#ffe9aa',
-    'orange' => '#ffb378',
-    'sky' => '#91ddff',
-    'blue' => '#65b2ff',
-    'mangenta' => '#c991e1',
-    'violett' => '#906cff',
-    'lightgreen' => '#aaffe4',
-    'cyan' => '#63f2f1',
-    'lightgrey' => '#cbe3e7',
-    'grey' => '#a6b3cc'
+  'red' =>        '#ff5458',
+  'salomon' =>    '#ff8080',
+  'orange' =>     '#ffb378',
+  'sienna' =>     '#ffe9aa',
+  'green' =>      '#98C379',
+  'lime' =>       '#62d196',
+  'cyan' =>       '#56B6C2',
+  'DarkCyan' =>   '#008B8B',
+  'Blue' =>       '#09568d',
+  'SteelBlue' =>  '#4682B4',
+  'violett' =>    '#906cff',
+  'purple' =>     '#C678DD',
+  'mangenta' =>   '#c991e1', 
     );
-function rand_color(){
-  global $colors;
-  return array_rand(array_flip($colors),1);
-}
+// function rand_color(){
+//   global $colors;
+//   // return array_rand(array_flip($colors),1);
+// }
 // echo rand_color();
+
+
+// MA-BO
+$MA_BO = array( 
+    'color_a' => array('yellow', '#FAD201'),
+    'color_b' => array('orange', '#FF8C00'),
+    'color_c' => array('red', '#8E1B1B'),
+    'color_d' => array('blue', '#103B73'),
+    'color_e' => array('green', '#315B00'),
+    'color_f' => array('violet', '#5C1073'), 
+);
+
+// ONEDARK alike
+$ONEDARK = array(
+    'color_a' => array('red', '#ff5458'),
+    'color_b' => array('salomon', '#ff8080'),
+    'color_c' => array('orange', '#ffb378'),
+    'color_d' => array('sienna', '#ffe9aa'),
+    'color_e' => array('green', '#98C379'),
+    'color_f' => array('lime', '#62d196'),
+    'color_g' => array('cyan', '#56B6C2'),
+    'color_h' => array('DarkCyan', '#008B8B'),
+    'color_i' => array('Blue', '#09568d'),
+    'color_j' => array('SteelBlue', '#4682B4'),
+    'color_k' => array('violett', '#906cff'),
+    'color_l' => array('purple', '#C678DD'),
+    'color_m' => array('mangenta', '#c991e1'),
+
+    'color_n' => array('white', '#F8F8F8'),
+    'color_o' => array('orange2', '#E5C07B'),
+    'color_p' => array('background', '#282C34'),
+    'color_q' => array('blue', '#65b2ff'),
+    'color_r' => array('grey', '#ABB2BF')
+);
+    
+$HTML = array(
+    'color_a'   => array('BlueViolet', '#8A2BE2'),
+    'color_b'   => array('Violet', '#EE82EE'),
+    'color_c' => array('Magenta', '#FF00FF'),
+    'color_d'  => array('MediumOrchid', '#BA55D3'),
+    'color_e'  => array('MediumPurple', '#9370DB'),
+    'color_f'   => array('MediumSlateBlue', '#7B68EE'),
+    'color_g' => array('Salmon', '#FA8072'),
+    'color_h' => array('DarkRed', '#8B0000'),
+    'color_i' => array('Red', '#FF0000'),
+    'color_j' => array('Pink', '#FFC0CB'),
+    'color_k' => array('HotPink', '#FF69B4'),
+    'color_l' => array('PaleVioletRed', '#DB7093'),
+    'color_m' => array('OrangeRed', '#FF4500'),
+    'color_n' => array('DarkOrange', '#FF8C00'),
+    'color_o' => array('Orange', '#FFA500'),
+    'color_p' => array('Gold', '#FFD700'),
+    'color_q' => array('Yellow', '#FFFF00'),
+    'color_r' => array('Khaki', '#F0E68C'),
+    'color_s' => array('LimeGreen', '#32CD32'),
+    'color_t' => array('PaleGreen', '#98FB98'),
+    'color_u' => array('SeaGreen', '#2E8B57'),
+    'color_v' => array('YellowGreen', '#9ACD32'),
+    'color_w' => array('Olive', '#808000'),
+    'color_x' => array('DarkCyan', '#008B8B'),
+    'color_y' => array('SteelBlue', '#4682B4'),
+    'color_z' => array('DodgerBlue', '#1E90FF'),
+    'color_aa' => array('CornflowerBlue', '#6495ED'),
+    'color_ab' => array('MediumSlateBlue', '#7B68EE'),
+    'color_ac' => array('Blue', '#0000FF'),
+    'color_ad' => array('MidnightBlue', '#191970'), 
+    'color_ae' => array('SandyBrown', '#F4A460'),
+    'color_af' => array('Maroon', '#800000')
+);
+
+$colors = $MA_BO;
+    
+    
+    
+function color($func='rand', $val='hex'){
+  global $colors;
+  $output = '';
+  $keys   = array_keys($colors);
+  $count  = count($colors)-1;
+
+  switch ($func) {
+
+    case 'rand':
+        $val = ($val === 'hex') ? 1 : 0;
+    return $colors[$keys[random_int(0, $count)]][$val];
+
+    case 'css':
+        foreach ($colors as $name => $hex) {
+            echo "#$name{color:$hex[1];} /*$hex[0]*/\n\t";
+        } 
+    break;
+     
+    
+    } //SWITCH
+    
+  return $output;
+}
+
+// echo color('rand','name');
 /*_________________________________________________ COLORS _________________________________________________*/
 
 
@@ -177,9 +301,10 @@ if (isset($_POST['new_entry']) and $_SESSION['logged_in'] == true){
     $data[] = array(
       'type' => 'container',
       'name' => $_POST['container'],
+      'position' => $_POST['position'],
       'color' => $_POST['color']
     );
-    if (!isset($data['color']) or $data['color'] == ''){ $data['color'] = rand_color();}
+    if (!isset($data['color']) or $data['color'] == ''){ $data['color'] = color('rand','hex');}
   }
   // NEW ITEM
   $data[] = array(
@@ -203,13 +328,11 @@ if (isset($_POST['new_entry']) and $_SESSION['logged_in'] == true){
 if (!isset($_SESSION['logged_in']) or $_SESSION['logged_in'] == false) {
   // MAKE RANDOM STRINGS FOR DUMMYS
   function rand_str($nr=7){
-    // $str = str_split('⼈⼉⼊⼋⼌⼍⼎⼏⼐⼑⼒⼓⼔⼕⼖⼗⼘⼙⼚⼛⼜⼝⼞⼟⼠⼡⼢⼣⼤⼥⼦⼧⼩⼪⼫⼭⼮⼯⼱⼲⼳⼵⼶⼷⼸⼹⼺⼻⼼⼽⼾⼿⽀⽁⽂⽃⽄⽅⽆⽇⽈⽉⽊⽋⽌⽍⽎⽏⽐⽑⽒⽓⽔⽕⽖⽗⽘⽙⽚⽛⽜⽝⽞⽟⽠⽡⽢⽣⽤⽥⽦⽧⽨⽩⽪⽫⽬⽭⽮⽯⽰⽱⽲⽳⽴⽵⽶⽷⽸⽹⽺⽻⽼⽽⽾⽿⾀⾁⾂⾃⾄⾅⾆⾇⾈⾉⾊⾋⾌⾍⾎⾏⾐⾑⾒⾓⾔⾕⾖⾗'); 
-
-    $str = str_split('qwrertzuiopasdgfhjklmnbvcxy1234567890'); 
-    // $str = explode(',','U+2F00,U+2F01,U+2F02,U+2F03,U+2F04,U+2F05,U+2F06,U+2F07,U+2F08,U+2F09,U+2F0A,U+2F0B,U+2F0C,U+2F0D,U+2F0E,U+2F0F,U+2F10,U+2F11,U+2F12,U+2F13,U+2F14,U+2F15,U+2F16,U+2F17,U+2F18,U+2F19,U+2F1A,U+2F1B,U+2F1C,U+2F1D,U+2F1E,U+2F1F,U+2F20,U+2F21,U+2F22,U+2F23,U+2F24,U+2F25,U+2F26,U+2F27,U+2F28,U+2F29,U+2F2A,U+2F2B,U+2F2C,U+2F2D,U+2F2E,U+2F2F,U+2F30,U+2F31,U+2F32,U+2F33,U+2F34,U+2F35,U+2F36,U+2F37,U+2F38,U+2F39,U+2F3A,U+2F3B,U+2F3C,U+2F3D,U+2F3E,U+2F3F,U+2F40,U+2F41,U+2F42,U+2F43,U+2F44,U+2F45,U+2F46,U+2F47,U+2F48,U+2F49,U+2F4A,U+2F4B,U+2F4C,U+2F4D,U+2F4E,U+2F4F,U+2F50,U+2F51,U+2F52,U+2F53,U+2F54,U+2F55,U+2F56,U+2F57,U+2F58,U+2F59,U+2F5A,U+2F5B,U+2F5C,U+2F5D,U+2F5E,U+2F5F,U+2F60,U+2F61,U+2F62,U+2F63,U+2F64,U+2F65,U+2F66,U+2F67,U+2F68,U+2F69,U+2F6A,U+2F6B,U+2F6C,U+2F6D,U+2F6E,U+2F6F,U+2F70,U+2F71,U+2F72,U+2F73,U+2F74,U+2F75,U+2F76,U+2F77,U+2F78,U+2F79,U+2F7A,U+2F7B,U+2F7C,U+2F7D,U+2F7E,U+2F7F,U+2F80,U+2F81,U+2F82,U+2F83,U+2F84,U+2F85,U+2F86,U+2F87,U+2F88,U+2F89,U+2F8A,U+2F8B,U+2F8C,U+2F8D,U+2F8E,U+2F8F,U+2F90,U+2F91,U+2F92,U+2F93,U+2F94,U+2F95,U+2F96,U+2F97'); 
+    $str = str_split('qwrertzuiopasdgfhjklmnbvcxy'); 
   shuffle($str); 
   $str = array_slice($str, 0, $nr); 
   $str = implode('', $str); 
+  $str = ucfirst($str);
   return $str;
   }
   // delete array content
@@ -217,12 +340,12 @@ if (!isset($_SESSION['logged_in']) or $_SESSION['logged_in'] == false) {
   // MAIN ARRAY
   $data[] = array('type' => 'main', 'name' => 'Dummy', 'color' => '#1e1e1e');
   // CONTAINER ARRAYS
-  for ($i=0; $i < $_GET['dummy'] = 15 ; $i++) { 
-    $container_name = rand_str(6);
+  for ($i=0; $i < 25 ; $i++) { 
+    $container_name = rand_str(random_int(5, 9));
     $data[] = array('type' => 'container', 'name' => $container_name, 'color' => '');
       // ITEM ARRAYS
-      for ($j=0; $j < $_GET['dummy'] = 5 ; $j++) { 
-        $data[] = array('type' => 'item', 'container' => $container_name, 'name' => rand_str(11), 'url' => rand_str(11));
+      for ($j=0; $j < 15 ; $j++) { 
+        $data[] = array('type' => 'item', 'container' => $container_name, 'name' => rand_str(random_int(10, 19)), 'url' => rand_str(11));
     }
   }
   $db_file ='';
@@ -250,17 +373,71 @@ if (!isset($_SESSION['logged_in']) or $_SESSION['logged_in'] == false) {
       foreach ($value as $ke => $va) {
         $data_array[$value['name']][$ke] = $va; 
       }
+      // add missing color
       if ($data_array[$value['name']]['color'] == ''){
-        $data_array[$value['name']]['color'] = rand_color();
+        $data_array[$value['name']]['color'] = color('rand','hex');
       }
+
+                  if (isset($data_array[$value['name']]['position'])){
+        // echo $data_array[$value['name']]['position'];
+      }
+
+
+      // add missing positon
+      if (!isset($data_array[$value['name']]['position'])){
+        $data_array[$value['name']]['position'] = $data_array[$value['name']]['name'];
+      }
+
+
+
     } 
-    // build the entries
+    // build the items
     if(isset($value['type']) and $value['type'] == 'item'){
       foreach ($value as $ke => $va) { 
       $data_array[$value['container']]['item'][$value['name']][$ke] = $va;
       }
+
     }
 }
+
+// SORT FUNCTION
+function array_orderby()
+{
+    $args = func_get_args();
+    $data = array_shift($args);
+    foreach ($args as $n => $field) {
+        if (is_string($field)) {
+            $tmp = array();
+            foreach ($data as $key => $row)
+                $tmp[$key] = $row[$field];
+            $args[$n] = $tmp;
+            }
+    }
+    $args[] = &$data;
+    call_user_func_array('array_multisort', $args);
+    return array_pop($args);
+}
+
+
+// SORT CONTAINER BY POSITION
+$data_array = array_orderby($data_array, 'position', SORT_ASC, 'name', SORT_ASC);
+
+// RESET POSITION NUMBERS
+function reset_positions(&$item2, $key, &$i)
+{   
+    $item2['position'] = $i;
+    $i = $i +10;
+    // pprint($item2['position']);
+}
+$i = 10; 
+array_walk($data_array, 'reset_positions', $i);
+
+
+// SORT ITEMS BY NAME
+foreach ($data_array as $key => $value) { 
+  $data_array[$key]['item'] = array_orderby($data_array[$key]['item'], 'name', SORT_ASC);
+}
+
 $debug_array['$config_array'] = $config_array;
 $debug_array['$data_array']   = $data_array;
 
@@ -288,45 +465,60 @@ $debug_array['$data_array']   = $data_array;
     <title>SecretServices</title>
     <style>
     <?= pprint_css(); ?>
-      #login_form:checked ~ div.login_form{background:var(--RtD_lightestgrey);border:solid 1px var(--RtD_lightgrey_border_menu);border-radius:5px;display:inline-block;padding:5px;position:absolute;width:200px;}
-      #new_container:checked ~ div.new_container{display:inline;}
-      #new_entry:checked ~ section.new_item_form{border-radius:5px;box-shadow:0 0 1px 5000px rgba(0,0,0,0.8);display:inline;padding:18px 18px 10px 33px;position:absolute;}
-      #new_item fieldset{border-color:#25a88e;border-radius:3px;color:#25a88e;margin:.5em 1em 1.3em 0;width:350px;}
-      *{-moz-box-sizing:border-box;-webkit-box-sizing:border-box;box-sizing:border-box;}
-      .button{font-size:13px;text-align:center;}
-      .container{display:inline-block;font-size:20px;padding:20px;vertical-align:top;width:300px;}
-      .container fieldset{border-radius:3px;border-style:solid;border-width:2px;color:inherit;filter:brightness(150%);margin:.5em 1em 1.3em 0;width:250px;}
-      .content{margin:0;padding:0;text-align:left;}
-      .font_brighter:hover{filter:brightness(150%);}
-      .form{margin:0;width:100%;}
-      .hidden{display:none;}
-      .login_form input{width:40px;}
-      .new_entry_button{color:#9400D3;font-size:180%;}
-      @font-face{font-family:Bree;font-style:normal;font-weight:400;src:local("Bree Regular"), local(Bree-Regular), url(css/bree.woff2) format('woff2');}
-      a{color:inherit;text-decoration:none;}
-      a.button{left:6px;position:relative;}
-      body{background-color:#232323;display:block;font:16px Lato, Helvetica, Arial, sans-serif;font-family:Lato, Sans-Serif;margin:8px;padding:50px;}
-      button:hover,.button:hover{background:#202020;}
-      div.close_new_item{position:absolute;right:45px;top:40px;}
-      fieldset legend{filter:brightness(80%);font-family:Bitter;font-size:1.2em;}
-      form button{position:relative;top:7px;}
-      form label{display:inline;font-family:Bitter, serif;}
-      form p{float:left;margin:1px;padding:5px;width:49%;}
-      h1{color:grey;font:2.5em Bitter, serif;}
-      h2{font:2.5em Bitter, serif;margin:0;}
-      /* html{-ms-text-size-adjust:100%;-webkit-tap-highlight-color:rgba(0,0,0,0);-webkit-text-size-adjust:100%;font-family:sans-serif;font-size:10px;} */
-      input,button,select,textarea,.button{background:#232323;border:1px solid #25a88e;border-radius:3px;color:grey;font-family:Lato, sans-serif;height:26px;padding:.2em;width:100%;}
-      label.close_new_item{color:#8B0000;}
-      label.login_form{font-size:180%;line-height:1.5em;}
-      li{list-style-type:none;}
-      ul{list-style:none;margin:0;padding:0;}
-      ul.scroll{height:110px;line-height:1.9em;overflow:auto;-ms-overflow-style:none;scrollbar-width:none;}
-      ul.scroll::-webkit-scrollbar{display:none;}
+    @font-face{font-family:Bree;font-style:normal;font-weight:400;src:local("Bree Regular"), local(Bree-Regular), url(css/bree.woff2) format('woff2');}
+    /* html{-ms-text-size-adjust:100%;-webkit-tap-highlight-color:rgba(0,0,0,0);-webkit-text-size-adjust:100%;font-family:sans-serif;font-size:10px;} */
+    *{-moz-box-sizing:border-box;-webkit-box-sizing:border-box;box-sizing:border-box;}
+    *,*::before,*::after {  box-sizing: border-box;}
+    body{background-color:#232323;display:block;font:16px Lato, Helvetica, Arial, sans-serif;font-family:Lato, Sans-Serif;margin:8px;padding:50px;}
+    .hidden{display:none;}
+    .noscrollbar::-webkit-scrollbar{display:none;}
+    .noscrollbar{-ms-overflow-style:none;scrollbar-width:none;}
+    h1{color:grey;font:2.5em Bitter, serif;}
+    h2{font:2.5em Bitter, serif;margin:0;}
+    a{color:inherit;text-decoration:none;}
+    a.button{left:6px;position:relative;}
+    .button{font-size:13px;text-align:center;}
+    .font_brighter:hover{filter:brightness(150%);}
+    .content{margin:0;padding:0;text-align:left;position: relative;}
+    li{list-style-type:none;}
+    ul{list-style:none;margin:0;padding:0; height:250px;line-height:1.9em;overflow:auto;}
+    .container{display:inline-block;font-size:20px;padding:20px;vertical-align:top;width:400px;}
+    .container fieldset{border-radius:3px;border-style:solid;border-width:2px;color:inherit;filter:brightness(100%);margin:.5em 1em 1.3em 0;width:350px;}
+    .form{margin:0;width:100%;}
+    button:hover,.button:hover{background:#202020;}
+    button.logout{position:relative;width: auto; padding: .3em;}
+    input,button,select,textarea,.button{background:#232323;border:1px solid #00000060;border-radius:3px;color:grey;font-family:Lato, sans-serif;height:26px;padding:.2em;width:145px;min-height: 1.8rem;}
+    select#container_select{width: 20px;}
+    input#container{width: 120px;}
+    fieldset legend{filter:brightness(100%);font-family:Bitter;font-size:1.2em;}
+    form p{float:left;margin:1px;padding:5px;width:49%;}
+    form button{position:relative;top:7px;}
+    form label{display:inline;font-family:Bitter, serif;padding-left: 5px;}
+    #login_form:checked ~ div.login_form{background:var(--RtD_lightestgrey);border:solid 1px var(--RtD_lightgrey_border_menu);border-radius:5px;display:inline-block;padding:5px;position:absolute;width:200px;}
+    .login_form input{width:40px;}
+    label.login_form{font-size:180%;line-height:1.5em;}
+    #new_container:checked ~ div.new_container{display:inline;}
+    label.new_container{color: #ff5458;}
+    
+    select {-webkit-appearance: none;-moz-appearance: none;text-indent: 1px;text-overflow: '';}/* HIDE ARROW FROM DOPDOWN */
+    select::-ms-expand {display: none;}/* HIDE ARROW FROM DOPDOWN */
+    select#container_select{padding:0; color:#232323; }
+ 
+
+
+    #new_entry:checked ~ section.new_item_form{border-radius:5px;box-shadow:0 0 1px 5000px rgba(0,0,0,0.8);display:inline;padding:18px 18px 10px 33px;position:absolute;left: 200px; background-color: #232323;}
+    .new_entry_button{color:#9400D3;font-size:180%;}
+    #new_item fieldset{border-color:grey;border-radius:3px;color:grey;margin:.5em 1em 1.3em 0;width:350px;}
+    div.close_new_item{position:absolute;right:45px;top:40px;color:#ff5458;}
+    #grey{color:grey;}
+    <?php color('css');?>
+ 
+
     </style>
   </head>
   <body style="background-color: <?=$config_array['color']?>;">
     <div class="content">
-<h1><a href="<?=$url?>">home</a></h1> 
+<h1><a href="<?=$url?>">SecretServices</a></h1> 
 <div class="message">
 
 
@@ -356,8 +548,11 @@ if (isset($_SESSION['logged_in']) and $_SESSION['logged_in'] == true) {
 ?>
 
   <div id='logged_in' class='overlay1'>
-  <a href='?logout' class='button'>&nbsp;logout&nbsp;</a>
-  <label class='new_entry_button font_brighter' for='new_entry'>&nbsp; &#9733;</label>
+    <form action="<?=$url?>" method="post" id="logout">           
+      <input type="hidden" name="logout" value="true"> 
+      <button form="logout" class="logout">Logout</button>
+    </form>
+    <label class='new_entry_button font_brighter' for='new_entry'>&nbsp; &#9733;</label>
   </div>
 <?php
 ; } 
@@ -371,8 +566,8 @@ if (isset($_SESSION['logged_in']) and $_SESSION['logged_in'] == true) {
   <? foreach ($data_array as $container => $value) { ?>
     <div style="color:<?= $data_array[$container]['color'] ?>" class="container">
       <fieldset style="border-color: <?= $data_array[$container]['color'] ?>">
-      <legend><?= $container ?></legend>
-        <ul class="scroll">
+      <legend><?= $data_array[$container]['name'] ?><?= $data_array[$container]['position'] ?></legend>
+        <ul class="noscrollbar">
         <!-- ITEMS  -->
         <?  foreach ($value['item'] as $item => $param) { ?>
           <!-- < ?pprint($value)?> -->
@@ -389,40 +584,127 @@ if (isset($_SESSION['logged_in']) and $_SESSION['logged_in'] == true) {
 
 <!-- ‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾ NEW_ENTRY_FORM ‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾ -->
 <input type="checkbox" id="new_entry" class="hidden">
-<section class="new_item_form hidden">
+<section class="new_item_form hiddenx">
   <form action="<?=$url?>" method="post" id="new_item" autocomplete="off">
-      <fieldset>
-          <legend>Neuer Eintrag</legend>
+      <fieldset class="change_color">
+          <legend class="change_color">Neuer Eintrag</legend>
           <div class="form">
-              <p><label for="container">container</label>
-              <label for="new_container" class="new_container font_brighter"> &#9733;</label>
-                <input list="containers"  name="container" id="container">
-                <datalist id="containers"><?php foreach ($data_array as $container => $item) {$name = $item['name']; echo "<option value='$name'>$name</option>";} ?></datalist >
+
+          
+
+
+
+          
+              <p>
+                <label for="container" class="change_color">Container</label>
+                <label for="new_container" class="new_container font_brighter"> &#9733;</label>
+                <input type="text" id="container" name="container" value=" ">
+
+                <select name="container_select" class="container_select" id="container_select">
+                  <option value=" e">&#9662; </option>
+                  <?php foreach ($data_array as $container => $item) {
+                    $name = $item['name']; 
+                    echo "<option  id='{$item['color']}' style='color: {$item['color']}' value='$name' onclick=\"setColor('$name','{$item['color']}')\">$name</option>"
+                    ;} ?>
+                </select>
               </p>
+
+
+
+
               <div class="close_new_item"><label class="close_new_item font_brighter" for="new_entry">✖</label></div>
+              <p style="visibility: hidden;"><label for="blind">blind</label><input type="text"   value=""></p>
+              <input type="checkbox" id="new_container" name="new_container" class="hidden" value="1" checked>
+
+
+              <div class="new_container hiddenx">
+                <p><label for="color" class="change_color">Color</label>
+                  <select name="color" id="colors">
+                    <option id='grey' value='grey'>grey</option>
+                    <?php foreach ($colors as $name => $hex) {echo "<option id='$name' value='$hex[1]'>$hex[0]</option>";} ?>
+                  </select> 
+                </p>
 
 
 
-              <input type="checkbox" id="new_container" name="new_container" class="hidden" value="1">
 
-              <div class="new_container hidden">
-                <p><label for="color">color</label><input type="text" id="color" name="color" value=""></p>
-                <p><label for="show_to">show_to</label><input type="text" id="show_to" name="show_to" value=""></p>  
+
+                <p><label for="position" class="change_color">Position</label>
+                  <select name="position" id="position">
+                    <option style="color: grey" value="1">first</option>
+                      <?php foreach ($data_array as $container => $item) {
+                        $next_position = $item['position']+1;
+                        echo "<option style='color: {$item['color']}' value='$next_position'>{$item['name']} &#8680;</option>";
+                      } ?>
+                  </select> 
+                </p>
               </div>
 
-              <p><label for="name">name</label><input type="text" id="name" name="name" value=""></p>
-              <p><label for="url">url</label><input type="text" id="url" name="url" value=""></p>
-              <p><label for="pw">pw</label><input type="text" id="pw" name="pw" value=""></p>
-              <p><label for="user">user</label><input type="text" id="user" name="user" value=""></p>
+              <p><label for="name" class="change_color">Name</label><input type="text" id="name" name="name" value=""></p>
+              <p><label for="url" class="change_color">Link</label><input type="text" id="url" name="url" value=""></p>
+              <p><label for="pw" class="change_color">Password</label><input type="text" id="pw" name="pw" value=""></p>
+              <p><label for="user" class="change_color">User</label><input type="text" id="user" name="user" value=""></p>
               <p><input type="hidden" name="new_entry" value="true"></p>
-              <p><button form="new_item">Ausführen</button></p>
+              <p><button form="new_item" class="">Send</button></p>
           </div>
       </fieldset>
   </form>
 </section>
 <!-- _________________________________________________ NEW_ENTRY_FORM _________________________________________________ -->
 
+ 
 
+
+<script>
+  // CHANGE COLOR
+document.getElementById('colors').addEventListener('change', changeColor);
+function changeColor() {
+    var color = document.getElementById('colors').value;
+    var list = document.getElementsByClassName('change_color');
+
+    for (var i=0; i<list.length; i++) {
+        list[i].style.color = color;
+        list[i].style.borderColor = color;
+    }
+    // alert("input_value " + input_value + "\nselect_value " + select_value);
+
+}
+  // CHANGE COLOR 
+
+  // CUSTOM INPUT IN OPTIONS
+  document.getElementById('container_select').addEventListener('change', fill_input);
+  function fill_input() {
+    // get selected value from pulldown
+    var select_value = document.getElementById('container_select').value;
+    // set input value with pulldown value
+    document.getElementById('container').value = select_value;
+    console.log("select_value " + select_value );  
+    ///////WORKS//////////////////////////
+    // var select_style = document.getElementById('container_select').id;
+    // var e = document.getElementById("container_select");
+    // var resultvalue = e.options[e.selectedIndex].value;
+    // var resulttext = e.options[e.selectedIndex].text;
+  }; 
+  // CUSTOM INPUT IN OPTIONS
+
+
+  
+ function setColor(name, color){
+       document.getElementById('colors').text = name;
+       document.getElementById('colors').value = color;
+
+      var list = document.getElementsByClassName('change_color');
+
+    for (var i=0; i<list.length; i++) {
+        list[i].style.color = color;
+        list[i].style.borderColor = color;
+    }
+    // alert("color " + color );
+}
+
+  </script>
+
+ 
 </div> 
 
     
@@ -437,7 +719,12 @@ if (isset($_SESSION['logged_in']) and $_SESSION['logged_in'] == true) {
 
 
 
-
+              <!-- <p>
+                <label for="container" class="change_color">container</label>
+                <label for="new_container" class="new_container font_brighter"> &#9733;</label>
+                <input list="containers"  name="container" id="container">
+                <datalist id="containers">< ?php foreach ($data_array as $container => $item) {$name = $item['name']; echo "<option value='$name'>$name</option>";} ?></datalist >
+              </p> -->
 
 
 
