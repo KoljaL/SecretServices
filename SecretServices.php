@@ -16,12 +16,15 @@ $debug_array['$dir_db']= $dir_db;
 
 
 
+
 /*‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾ SESSION ‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾*/
 $_SESSION['last_visit'] = time();
 if (!isset($_SESSION['last_visit'])) {$_SESSION['last_visit'] = time();}
 if ((time() - $_SESSION['last_visit']) > 300){session_destroy(); header('Location: '.$url);}
-if (isset($_POST['logout']) ){session_destroy(); header('Location: '.$url); exit;} 
-if(!isset($_SESSION['logged_in'])){$_SESSION['logged_in'] = false;}
+if ( isset($_POST['logout']) ){session_destroy(); header('Location: '.$url); exit;} 
+if (!isset($_SESSION['logged_in'])){$_SESSION['logged_in'] = false;}
+if ( isset($_POST['colors'])) {$_SESSION['colors'] = $_POST['colors'];}
+if (!isset($_POST['colors']) and !isset($_SESSION['colors'])) {$_SESSION['colors'] = 'ONEDARK';}
 /*_________________________________________________ SESSION _________________________________________________*/
 
 
@@ -94,7 +97,7 @@ if (isset($_SESSION['logged_in']) and $_SESSION['logged_in'] == true) {
 
   if(!is_file($db_file)){
       $content = '[
-        {"type": "main","name": "SecretServices","color": "#282C34"},
+        {"type": "main","name": "SecretServices","color": "#1e1e1e"},
         {"type": "container","name": "Venus","color": "#ff5458", "position": "20"},
         {"type": "item","name": "gamma","container": "Venus","url": "..."},
         {"type": "item","name": "alpha","container": "Venus","url": "..."},
@@ -123,7 +126,7 @@ if (isset($_SESSION['logged_in']) and $_SESSION['logged_in'] == true) {
 
 // pprint($data);
 // pprint($_POST);
-// pprint($_SESSION);
+// pprint($_SESSION); 
 // pprint($file_array);
 
   // pprint(json_decode(file_get_contents('data/user_e22a63fb76874c99488435f26b117e37.json'), true));
@@ -132,56 +135,11 @@ if (isset($_SESSION['logged_in']) and $_SESSION['logged_in'] == true) {
 /*_________________________________________________ DEBUG _________________________________________________*/
 
 
-
+// exit;
 
 
 /*‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾ COLORS ‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾*/
- 
 
-$Bright_Colors = array(
-    'Sizzling Red' =>     '#FF3855',
-    'Red Salsa' =>        '#FD3A4A',
-    'Tart Orange' =>      '#FB4D46',
-    'Orange Soda' =>      '#FA5B3D',
-    'Bright Yellow' =>    '#FFAA1D',
-    'Yellow Sunshine' =>  '#FFF700',
-    'Slimy Green' =>      '#299617',
-    'Green Lizard' =>     '#A7F432',
-    'Denim Blue' =>       '#2243B6',
-    'Blue Jeans' =>       '#5DADEC',
-    'Plump Purple' =>     '#5946B2',
-    'Purple Plum' =>      '#9C51B6',
-    'Fiery Rose' =>       '#FF5470',
-    'Sizzling Sunrise' => '#FFDB00',
-    'Heat Wave' =>        '#FF7A00',
-    'Lemon Glacier' =>    '#FDFF00',
-    'Spring Frost' =>     '#87FF2A',
-    'Absolute Zero' =>    '#0048BA',
-    'Winter Sky' =>       '#FF007C',
-    'Frostbite' =>        '#E936A7');
- 
- 
-    // ONEDARK alike
-$colors = array(
-  'red' =>        '#ff5458',
-  'salomon' =>    '#ff8080',
-  'orange' =>     '#ffb378',
-  'sienna' =>     '#ffe9aa',
-  'green' =>      '#98C379',
-  'lime' =>       '#62d196',
-  'cyan' =>       '#56B6C2',
-  'DarkCyan' =>   '#008B8B',
-  'Blue' =>       '#09568d',
-  'SteelBlue' =>  '#4682B4',
-  'violett' =>    '#906cff',
-  'purple' =>     '#C678DD',
-  'mangenta' =>   '#c991e1', 
-    );
-// function rand_color(){
-//   global $colors;
-//   // return array_rand(array_flip($colors),1);
-// }
-// echo rand_color();
 
 
 // MA-BO
@@ -210,11 +168,11 @@ $ONEDARK = array(
     'color_l' => array('purple', '#C678DD'),
     'color_m' => array('mangenta', '#c991e1'),
 
-    'color_n' => array('white', '#F8F8F8'),
-    'color_o' => array('orange2', '#E5C07B'),
-    'color_p' => array('background', '#282C34'),
-    'color_q' => array('blue', '#65b2ff'),
-    'color_r' => array('grey', '#ABB2BF')
+    // 'color_n' => array('white', '#F8F8F8'),
+    // 'color_o' => array('orange2', '#E5C07B'),
+    // 'color_p' => array('background', '#282C34'),
+    // 'color_q' => array('blue', '#65b2ff'),
+    // 'color_r' => array('grey', '#ABB2BF')
 );
     
 $HTML = array(
@@ -252,35 +210,23 @@ $HTML = array(
     'color_af' => array('Maroon', '#800000')
 );
 
-$colors = $MA_BO;
-    
-    
+$colors = eval('return $'. $_SESSION['colors'] . ';');
     
 function color($func='rand', $val='hex'){
   global $colors;
-  $output = '';
   $keys   = array_keys($colors);
   $count  = count($colors)-1;
-
   switch ($func) {
-
     case 'rand':
-        $val = ($val === 'hex') ? 1 : 0;
-    return $colors[$keys[random_int(0, $count)]][$val];
-
+    return $colors[$keys[random_int(0, $count)]][($val === 'hex') ? 1 : 0];
     case 'css':
         foreach ($colors as $name => $hex) {
             echo "#$name{color:$hex[1];} /*$hex[0]*/\n\t";
         } 
     break;
-     
-    
-    } //SWITCH
-    
-  return $output;
+    } //SWITCH    
 }
-
-// echo color('rand','name');
+// echo  color('rand','hex');
 /*_________________________________________________ COLORS _________________________________________________*/
 
 
@@ -289,15 +235,9 @@ function color($func='rand', $val='hex'){
 /*‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾ NEW_ENTRY ‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾*/
 if (isset($_POST['new_entry']) and $_SESSION['logged_in'] == true){
   // load existig data
-  // $data = file_get_contents($db_file);
-  // $data = json_decode($data, true);
   $data = secure('decrypt', $_SESSION['password'], $db_file, "");
-  // $data = json_decode($data, true);
-
-  // pprint($data,1,1,1);
-
   // NEW CONTAINER
-  if(isset($_POST['new_container']) and $_POST['new_container'] ==1){
+  if(isset($_POST['new_container']) and $_POST['new_container'] !==12){
     $data[] = array(
       'type' => 'container',
       'name' => $_POST['container'],
@@ -469,11 +409,11 @@ $debug_array['$data_array']   = $data_array;
     /* html{-ms-text-size-adjust:100%;-webkit-tap-highlight-color:rgba(0,0,0,0);-webkit-text-size-adjust:100%;font-family:sans-serif;font-size:10px;} */
     *{-moz-box-sizing:border-box;-webkit-box-sizing:border-box;box-sizing:border-box;}
     *,*::before,*::after {  box-sizing: border-box;}
-    body{background-color:#232323;display:block;font:16px Lato, Helvetica, Arial, sans-serif;font-family:Lato, Sans-Serif;margin:8px;padding:50px;}
+    body{background-color:#232323;display:block;font:16px Lato, Helvetica, Arial, sans-serif;font-family:Lato, Sans-Serif;margin:0px;padding: 5px 20px 20px 20px;}
     .hidden{display:none;}
     .noscrollbar::-webkit-scrollbar{display:none;}
     .noscrollbar{-ms-overflow-style:none;scrollbar-width:none;}
-    h1{color:grey;font:2.5em Bitter, serif;}
+    h1{color:grey;font:2.5em Bitter, serif;line-height: .5em;}
     h2{font:2.5em Bitter, serif;margin:0;}
     a{color:inherit;text-decoration:none;}
     a.button{left:6px;position:relative;}
@@ -506,7 +446,14 @@ $debug_array['$data_array']   = $data_array;
  
 
 
-    #new_entry:checked ~ section.new_item_form{border-radius:5px;box-shadow:0 0 1px 5000px rgba(0,0,0,0.8);display:inline;padding:18px 18px 10px 33px;position:absolute;left: 200px; background-color: #232323;}
+    #new_entry:checked ~ section.new_item_form{border-radius:5px;box-shadow:0 0 1px 5000px rgba(0,0,0,0.8);display:inline;padding:18px 18px 10px 33px;
+    /* left: 200px; top: 100px;  */
+      position:absolute;
+      top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #232323;}
+    
     .new_entry_button{color:#9400D3;font-size:180%;}
     #new_item fieldset{border-color:grey;border-radius:3px;color:grey;margin:.5em 1em 1.3em 0;width:350px;}
     div.close_new_item{position:absolute;right:45px;top:40px;color:#ff5458;}
@@ -526,6 +473,15 @@ $debug_array['$data_array']   = $data_array;
 
 </div>
 
+
+<form method="post">
+    <select name="colors" onchange="this.form.submit();">
+        <option style='color: grey' value='Colors'>Colors</option>
+        <option style='color: grey' value='ONEDARK'>OneDark</option>
+        <option style='color: grey' value='HTML'>HTML</option>
+        <option style='color: grey' value='MA_BO'>MA</option> 
+    </select>
+</form>
 
 <!-- ‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾ USER_LINKS ‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾ -->
 <div class="user_links">
@@ -560,13 +516,13 @@ if (isset($_SESSION['logged_in']) and $_SESSION['logged_in'] == true) {
 </div>
 <!-- _________________________________________________ USER_LINKS _________________________________________________ -->
 
-
+<!-- < ?= $data_array[$container]['position'] ?> -->
 
 <!-- ‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾ CONTAINER ‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾ -->
   <? foreach ($data_array as $container => $value) { ?>
     <div style="color:<?= $data_array[$container]['color'] ?>" class="container">
       <fieldset style="border-color: <?= $data_array[$container]['color'] ?>">
-      <legend><?= $data_array[$container]['name'] ?><?= $data_array[$container]['position'] ?></legend>
+      <legend><?= $data_array[$container]['name'] ?></legend>
         <ul class="noscrollbar">
         <!-- ITEMS  -->
         <?  foreach ($value['item'] as $item => $param) { ?>
@@ -584,7 +540,7 @@ if (isset($_SESSION['logged_in']) and $_SESSION['logged_in'] == true) {
 
 <!-- ‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾ NEW_ENTRY_FORM ‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾ -->
 <input type="checkbox" id="new_entry" class="hidden">
-<section class="new_item_form hiddenx">
+<section class="new_item_form hidden">
   <form action="<?=$url?>" method="post" id="new_item" autocomplete="off">
       <fieldset class="change_color">
           <legend class="change_color">Neuer Eintrag</legend>
@@ -601,7 +557,7 @@ if (isset($_SESSION['logged_in']) and $_SESSION['logged_in'] == true) {
                 <input type="text" id="container" name="container" value=" ">
 
                 <select name="container_select" class="container_select" id="container_select">
-                  <option value=" e">&#9662; </option>
+                  <!-- <option value=" e">&#9662; </option> -->
                   <?php foreach ($data_array as $container => $item) {
                     $name = $item['name']; 
                     echo "<option  id='{$item['color']}' style='color: {$item['color']}' value='$name' onclick=\"setColor('$name','{$item['color']}')\">$name</option>"
@@ -617,7 +573,7 @@ if (isset($_SESSION['logged_in']) and $_SESSION['logged_in'] == true) {
               <input type="checkbox" id="new_container" name="new_container" class="hidden" value="1" checked>
 
 
-              <div class="new_container hiddenx">
+              <div class="new_container hidden">
                 <p><label for="color" class="change_color">Color</label>
                   <select name="color" id="colors">
                     <option id='grey' value='grey'>grey</option>
@@ -652,7 +608,7 @@ if (isset($_SESSION['logged_in']) and $_SESSION['logged_in'] == true) {
 </section>
 <!-- _________________________________________________ NEW_ENTRY_FORM _________________________________________________ -->
 
- 
+
 
 
 <script>
