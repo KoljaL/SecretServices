@@ -405,9 +405,9 @@ $debug_array['$_SESSION'] = $_SESSION;
   
 
 /*‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾ TIDY_TEMPLATE ‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾*/
- ob_start();
+//ob_start();
 require 'template.php';
-$html = ob_get_clean();
+//$html = ob_get_clean();
 $config = array(
     'indent' => true,
     'indent-spaces' => 2,
@@ -418,10 +418,10 @@ $config = array(
     'hide-comments' => true, 
     'wrap' => 0
  );
-$tidy = new tidy;
-$tidy->parseString($html, $config, 'utf8');
-$tidy->cleanRepair();
-echo $tidy;
+//$tidy = new tidy;
+//$tidy->parseString($html, $config, 'utf8');
+//$tidy->cleanRepair();
+//echo $tidy;
  
 /*_________________________________________________ TIDY_TEMPLATE _________________________________________________*/
  
