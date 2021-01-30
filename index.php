@@ -405,9 +405,9 @@ $debug_array['$_SESSION'] = $_SESSION;
   
 
 /*‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾ TIDY_TEMPLATE ‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾*/
-//ob_start();
+ ob_start();
 require 'template.php';
-//$html = ob_get_clean();
+$html = ob_get_clean();
 $config = array(
     'indent' => true,
     'indent-spaces' => 2,
@@ -418,10 +418,10 @@ $config = array(
     'hide-comments' => true, 
     'wrap' => 0
  );
-//$tidy = new tidy;
-//$tidy->parseString($html, $config, 'utf8');
-//$tidy->cleanRepair();
-//echo $tidy;
+$tidy = new tidy;
+$tidy->parseString($html, $config, 'utf8');
+$tidy->cleanRepair();
+echo $tidy;
  
 /*_________________________________________________ TIDY_TEMPLATE _________________________________________________*/
  
@@ -775,6 +775,13 @@ function grap_favicon($url, $name){
         // $filePath = preg_replace('#\/\/#', '/', $directory . '/' . $domain . '.png');            
         //  Load Favicon
         $content = load($favicon, $DEBUG);
+
+        // If Google API don't know and deliver a default Favicon (World)
+        // if ( isset($random) and $random == 3 and md5($content) == '3ca64f83fdcf25135d87e08af65e68c9' ) {$domain = 'default';  }
+
+        if ($DEBUG == 'debug'){print($content);}
+        if ( (md5($content) == '3ca64f83fdcf25135d87e08af65e68c9') or ($content == '') ) {return;}
+
         // Write 
         $fh = @fopen($filePath, 'wb');
         fwrite($fh, $content);
