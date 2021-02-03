@@ -13,8 +13,8 @@
 	<link rel="stylesheet" href="style.css">
 	<style>
 		<?= pprint_css() ?>
-		<? color($color_set,'get_container_colors','') ?>
-		<? color($color_set, 'get_site_colors','') ?>
+		<?php color($color_set,'get_container_colors','') ?>
+		<?php color($color_set, 'get_site_colors','') ?>
 		<?=$edit_css ?>
 	</style>
 </head>
@@ -34,7 +34,7 @@
 						</div>
 					</fieldset>
 				</div>
-				<? if(isset($user_ID)): ?>
+				<?php if(isset($user_ID)): ?>
 				<label class="header_button" for='new_entry' title="new Entry">&#9998;</label>
 				<form action="<?= $url ?>" method="POST">
 					<button name="show_edit_json" value="1" class="header_button" title="edit JSON Array" style="font-weight:bold;padding-bottom:4px">&#119973;</button>
@@ -44,7 +44,7 @@
 						<button name="logout" value="true" class="header_button" title="logout <?=$name?>" style="font-weight:bold;padding-bottom:2px">&#10008;</button>
 					</form>
 				</div>
-				<? else: ?>
+				<?php else: ?>
 				<label class="header_button" for="login_form">&#9998;</label>
 				<input type="checkbox" id="login_form" class="hidden">
 				<div class="login_form hidden">
@@ -54,7 +54,7 @@
 						<button class="header_button">&#10004;</button>
 					</form>
 				</div>
-				<? endif ?>
+				<?php endif ?>
 				<div class="colorset">
 					<form method="post" title="choose Colorset">
 						<select name="colors" onchange="this.form.submit();">
@@ -72,13 +72,13 @@
 		</div>
 		<div class="message">
 			<?= $message ?>
-				<? //pprint($debug_array, 0, 0, 0) ?>
-				<? //pprint($data_array, 0, 0, 1) ?>
-				<? //pprint($data, 0, 0, 0) ?>
-				<? //pprint($_POST, 0, 0, 0) ?>
+				<?php //pprint($debug_array, 0, 0, 0) ?>
+				<?php //pprint($data_array, 0, 0, 1) ?>
+				<?php //pprint($data, 0, 0, 0) ?>
+				<?php //pprint($_POST, 0, 0, 0) ?>
 		</div>
 		<div class="content">
-			<? if($show_edit_json==true): ?>
+			<?php if($show_edit_json==true): ?>
 			<div class="edit_json">
 				<form action="<?= $url ?>" method="POST">
 					<button class="header_button">&#10004;</button>
@@ -86,10 +86,10 @@
 					<textarea id="edit_json" class="noscrollbar" name="edit_json" wrap="off" rows=30 cols=129></textarea>
 				</form>
 			</div>
-			<? endif ?>
+			<?php endif ?>
 			<div class="<?= $grid_style ?>" id="mansory">
 				<!-- ‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾ NEW_ENTRY_FORM ‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾ -->
-				<? if(isset($user_ID)): ?>
+				<?php if(isset($user_ID)): ?>
 				<input type="checkbox" id="new_entry" class="hidden" <?=$checked ?>>
 				<section class="new_item_form hidden">
 					<fieldset class="change_color">
@@ -113,7 +113,7 @@
 								<select class="container_select" name="container[id2]" id="container_select">
 									<!-- name="container_select" -->
 									<option disabled selected>select Container</option>
-                                    <? foreach ($data_array as $container=>$item): 
+                                    <?php foreach ($data_array as $container=>$item): 
                                     if($container === 'config_params')continue; 
                                     $name = $item['name']; 
                                     $selected = ($name == $c_name) ? 'selected="selected"' : ''; 
@@ -128,7 +128,7 @@
 								<label for="position_select" class="change_color">Position</label>
 								<select name="container[position]" id="position_select">
 									<option style="color: grey" value="1">first</option>
-                                    <? foreach ($data_array as $container=>$item): 
+                                    <?php foreach ($data_array as $container=>$item): 
                                     if($container === 'config_params')continue; 
                                     $selected = ($c_pos == $item['position']) ? 'selected="selected"' : ''; 
                                     $next_position = $item['position'] + 4; 
@@ -140,7 +140,7 @@
 								<label for="color_select" class="change_color">Color</label>
 								<select name="container[color]" id="color_select">
 									<option class='grey' value='Grey'>Grey</option>
-									<? color($color_set, 'container_color',$c_color_name); ?>
+									<?php color($color_set, 'container_color',$c_color_name); ?>
 								</select>
 							</div>
 							<div id="hr" class="change_color"></div>
@@ -175,12 +175,12 @@
 						</form>
 					</fieldset>
 				</section>
-				<? endif ?>
+				<?php endif ?>
 				<!-- _________________________________________________ NEW_ENTRY_FORM _________________________________________________ -->
 				<!--<a href="#" onclick="URL2post('< ?php echo $param['url'] ?>', {< ?php echo $param['post_data'] ?>});">< ? php echo $param['name'] ?></a>-->
 				<!-- ‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾ CONTAINER ‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾ -->
-				<? foreach ($data_array as $container=>$value): ?>
-				<? if($container==='config_params')continue; ?>
+				<?php foreach ($data_array as $container=>$value): ?>
+				<?php if($container==='config_params')continue; ?>
 				<div class="container <?= $data_array[$container]['color'] ?>">
 					<fieldset class="<?= $data_array[$container]['color'] ?>">
 						<legend>
@@ -188,36 +188,36 @@
 							<!-- < ?=$data_array[$container]['position'] ?> -->
 						</legend>
 						<div class="noscrollbar">
-							<? foreach ($value as $item=>$param): ?>
-							<? if(substr($item,0,2) !='I_')continue; ?>
+							<?php foreach ($value as $item=>$param): ?>
+							<?php if(substr($item,0,2) !='I_')continue; ?>
 							<!-- ITEMS  -->
 							<div class="item task"  data-id="<?= $param['id'] ?>" >
-								<? if(!empty($param['icon'])): ?>
+								<?php if(!empty($param['icon'])): ?>
 								<img title="<?= $param['icon'] ?>" src="<?= $param['icon'] ?>" width="16" height="16" />
-								<? else: ?>
+								<?php else: ?>
 								<img src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAFo9M/3AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAGQSURBVChTbZNPK6VRHIDPpSymSZKtGhZKbFF01dAMi5nFbHwNitjIwgdQZudPmWIjajZqiiJJytIHUKOUnbJjiOc57znXe42nnvM77znve+7v/M65IbGVmx92Io14irfxCcZTDJUUt1Os+Kos4iNe+fDRBqZwz09elw6hyeYMd/EG+x2QCWzB3/gBe3ETI/6A7KRYpqeB5qDoh4sUpS/F76YZU4NZvMef+Iz/MO8nUkULkn+yDhMyMRM0URM28cheim48Y+1yQUJPimXyjhZNcgS7sLvkGHoUQxjmbCBvTeZTrFpryzmDw3iMrvqE7TjowzX+RWtvPhs4gKNYO+CMqy3gCd7hNxR32ozWyjqdYyQv4IdLaNUd+4yHWMbNHqGnYHrTGBdy1bxRWce2oluHY2tFN+I3sQge3z4+oEzictH9j/Kcl/OrHfdUPiwv69vaiGPOZfymdm8sUj76DlwpunWs4qeiG9/NV6iGl+sXOull+4OtSfuOOec7tYv4XqpiYb9gZ3wK4RL943i8JUJ4ATAKRUDHWhJdAAAAAElFTkSuQmCC" width="16" height="16" alt="" />
-								<? endif ?> 
+								<?php endif ?> 
 								<div class="item_link">
-						            <? if(!empty($param['post_data'])): ?>
+						            <?php if(!empty($param['post_data'])): ?>
 						     		<form class="url2post" method="post">
 									     <input type="hidden" name="url2post" value="<?= $param['id'] ?>">
 									     <a href="#" onclick="document.getElementById('url2post').submit();"><?= $param['name'] ?></a>
 									</form>
-									<? else: ?>
+									<?php else: ?>
 
 
 											<!-- <div id="ctxMenu"><button type='submit' name='edit' value='<?= $param['id'] ?>' class='icon'>✎</button></div> -->
 											
 
 					                <a href="<?= $param['url'] ?>"target="_blank" > <?= $param['name'] ?> </a>
-					                <? endif ?>
+					                <?php endif ?>
 								</div> 
 
 								
 								<div id="no_touch_device">		
 
 								<!-- in index.php  -->
-									<? if(!empty($param['notes'])) { 
+									<?php if(!empty($param['notes'])) { 
 										$note="" ; 
 										$lines=preg_split( '/\r\n|[\r\n]/', $param['notes']); 
 										foreach($lines as $line){ 
@@ -239,22 +239,22 @@
 									<div class="<?= $data_array[$container]['color'] ?> tooltip" id="<?= $param['id'] ?>"> <?= trim($note) ?> </div>
 
 
-									<? if(isset($user_ID)): ?>
+									<?php if(isset($user_ID)): ?>
 									<div class="edit_item_icon">
 										<form action='' method='post'>
 											<button type='submit' name='edit' value='<?= $param['id'] ?>' class='icon'>✎</button>
 										</form>
 									</div>
-									<? endif ?>
+									<?php endif ?>
 								</div>
 
 							</div>
 							<!-- ITEMS  -->
-							<? endforeach; ?>
+							<?php endforeach; ?>
 						</div>
 					</fieldset>
 				</div>
-				<? endforeach ?>
+				<?php endforeach ?>
 				<nav id="context-menu" class="context-menu">
 					<!-- <ul class="context-menu__items">
 						<li class="context-menu__item">
