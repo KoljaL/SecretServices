@@ -224,7 +224,7 @@ function show_tooltip(ID) {
 // console.log(touch);
 
 if (('ontouchstart' in window) == true){
-  var noTouch = document.getElementById('no_touch_device');
+  var noTouch = document.getElementsByClassName('no_touch_device');
   noTouch.style.visibility = "visible";
   console.log('touch');
 } else{

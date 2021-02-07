@@ -214,31 +214,9 @@
 								</div> 
 
 								
-								<div id="no_touch_device">		
-
-								<!-- in index.php  -->
-									<?php if(!empty($param['notes'])) { 
-										$note="" ; 
-										$lines=preg_split( '/\r\n|[\r\n]/', $param['notes']); 
-										foreach($lines as $line){ 
-											if (substr($line, 0, strlen('- ')) === "- "){$note .="<li>".substr($line, strlen( '- '))."</li>";} // list entry 
-											else{$note .=$line. "<br>";} // line without 
-											} // make Headlines 
-										$note = preg_replace_callback( '/(#+)(.+?)<br>/s',function($matches){$h_num=strlen($matches[1]);return "<h$h_num>".$matches[2]. "</h$h_num>";},$note); 
-										// make bold 
-										$note = preg_replace('#\*{2}(.*?)\*{2}#', '<b>$1</b>', $note); 
-										// make bold 
-										$note = preg_replace('#\*{1}(.*?)\*{1}#', '<i>$1</i>', $note); 
-									 } else {
-										$note = 'URL: '.$param['url'];
-									} ?>
-								<!-- in index.php  -->
-
-								
+								<div class="no_touch_device" style="visibility:hidden">		 
 									<label class="tooltip icon" onmousedown="show_tooltip('<?= $param['id'] ?>');">&nbsp; &#8801;</label>
-									<div class="<?= $data_array[$container]['color'] ?> tooltip" id="<?= $param['id'] ?>"> <?= trim($note) ?> </div>
-
-
+									<div class="<?= $data_array[$container]['color'] ?> tooltip" id="<?= $param['id'] ?>"> <?= trim( $param['notes']) ?> </div>
 									<?php if(isset($user_ID)): ?>
 									<div class="edit_item_icon">
 										<form action='' method='post'>

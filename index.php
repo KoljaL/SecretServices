@@ -299,6 +299,26 @@ foreach ($data as $item => $value) {
     }
     // build the items
     if (isset($value['type']) && 'item' == $value['type']) {
+
+        // parse markdown in notes
+        if(!empty($value['notes'])) { 
+            $note="" ; 
+            $lines=preg_split( '/\r\n|[\r\n]/', $value['notes']); 
+            foreach($lines as $line){ 
+                if (substr($line, 0, strlen('- ')) === "- "){$note .="<li>".substr($line, strlen( '- '))."</li>";} // list entry 
+                else{$note .=$line. "<br>";} // line without 
+            } 
+            // make Headlines 
+            $note = preg_replace_callback( '/(#+)(.+?)<br>/s',function($matches){$h_num=strlen($matches[1]);return "<h$h_num>".$matches[2]. "</h$h_num>";},$note); 
+            // make bold 
+            $note = preg_replace('#\*{2}(.*?)\*{2}#', '<b>$1</b>', $note); 
+            // make bold 
+            $note = preg_replace('#\*{1}(.*?)\*{1}#', '<i>$1</i>', $note); 
+        } else {
+            $note = 'URL: '.$value['url'];
+        } 
+        $value['notes'] = $note;
+        // build item array
         foreach ($value as $ke => $va) {
             $data_array[$value['c_id']][$value['id']][$ke] = $va;
 		}
