@@ -1,3 +1,3 @@
 # SecuretServices
 
-![SecureServicesScreenshot](secureScreenshot.png "SecretServicesScreenshot")
+![SecureServicesScreenshot](assets/secureScreenshot.png "SecretServicesScreenshot")
