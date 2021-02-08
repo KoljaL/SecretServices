@@ -17,6 +17,7 @@
 		<?php color($color_set, 'get_site_colors','') ?>
 		<?=$edit_css ?>
 	</style>
+	
 </head>
 
 <body id="body" <?= $onloadURL2POST ?>>

@@ -57,6 +57,8 @@ if (isset($_POST['u_name']) && '' != $_POST['u_name'] && isset($_POST['u_passwor
 }
 if (isset($_SESSION['user_ID'])) {$user_ID = $_SESSION['user_ID'];}
 if (isset($_SESSION['u_name'])) {$name = $_SESSION['u_name'];}
+if (isset($user_ID)) {$_SESSION['last_visit'] = time();}
+
 /*_________________________________________________ LOGIN _________________________________________________*/
 
 
