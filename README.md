@@ -1,6 +1,6 @@
 # SecretServices
 
-![SecretServicesScreenshot](secretScreenshot.png "SecretServicesScreenshot")
+![SecureServicesScreenshot](secureScreenshot.png "SecretServicesScreenshot")
  
 
-[repl.it/@KoljaL/SecretServices](https://repl.it/@KoljaL/SecretServices)
+[repl.it/@KoljaL/SecuretServices](https://repl.it/@KoljaL/SecuretServices)
