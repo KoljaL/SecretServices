@@ -428,7 +428,7 @@ $debug_array['$_SESSION'] = $_SESSION;
 
 /*‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾ TIDY_TEMPLATE ‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾*/
  ob_start();
-require 'template.php';
+require 'assets/template.php';
 $html = ob_get_clean();
 $config = array(
     'indent' => true,
