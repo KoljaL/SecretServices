@@ -730,7 +730,10 @@ function secure($action, $key, $file, $string){
 // https://github.com/audreyr/favicon-cheat-sheet
 function grap_favicon($url, $name){
 	if(empty($url)){ return null;}
-    $directory = './data';
+    $directory = './data/icons';
+    if (!file_exists($directory)) {
+    mkdir($directory, 0777, true);
+    }
     $DEBUG     = null; // Give all Debug-Messages ('debug') or only make the work (null)
     // avoid script runtime timeout
     $max_execution_time = ini_get("max_execution_time");

@@ -196,7 +196,10 @@
 								<?php if(!empty($param['icon'])): ?>
 								<img title="<?= $param['icon'] ?>" src="<?= $param['icon'] ?>" width="16" height="16" />
 								<?php else: ?>
-								<img src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAFo9M/3AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAGQSURBVChTbZNPK6VRHIDPpSymSZKtGhZKbFF01dAMi5nFbHwNitjIwgdQZudPmWIjajZqiiJJytIHUKOUnbJjiOc57znXe42nnvM77znve+7v/M65IbGVmx92Io14irfxCcZTDJUUt1Os+Kos4iNe+fDRBqZwz09elw6hyeYMd/EG+x2QCWzB3/gBe3ETI/6A7KRYpqeB5qDoh4sUpS/F76YZU4NZvMef+Iz/MO8nUkULkn+yDhMyMRM0URM28cheim48Y+1yQUJPimXyjhZNcgS7sLvkGHoUQxjmbCBvTeZTrFpryzmDw3iMrvqE7TjowzX+RWtvPhs4gKNYO+CMqy3gCd7hNxR32ozWyjqdYyQv4IdLaNUd+4yHWMbNHqGnYHrTGBdy1bxRWce2oluHY2tFN+I3sQge3z4+oEzictH9j/Kcl/OrHfdUPiwv69vaiGPOZfymdm8sUj76DlwpunWs4qeiG9/NV6iGl+sXOull+4OtSfuOOec7tYv4XqpiYb9gZ3wK4RL943i8JUJ4ATAKRUDHWhJdAAAAAElFTkSuQmCC" width="16" height="16" alt="" />
+								<!-- <img src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAFo9M/3AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAGQSURBVChTbZNPK6VRHIDPpSymSZKtGhZKbFF01dAMi5nFbHwNitjIwgdQZudPmWIjajZqiiJJytIHUKOUnbJjiOc57znXe42nnvM77znve+7v/M65IbGVmx92Io14irfxCcZTDJUUt1Os+Kos4iNe+fDRBqZwz09elw6hyeYMd/EG+x2QCWzB3/gBe3ETI/6A7KRYpqeB5qDoh4sUpS/F76YZU4NZvMef+Iz/MO8nUkULkn+yDhMyMRM0URM28cheim48Y+1yQUJPimXyjhZNcgS7sLvkGHoUQxjmbCBvTeZTrFpryzmDw3iMrvqE7TjowzX+RWtvPhs4gKNYO+CMqy3gCd7hNxR32ozWyjqdYyQv4IdLaNUd+4yHWMbNHqGnYHrTGBdy1bxRWce2oluHY2tFN+I3sQge3z4+oEzictH9j/Kcl/OrHfdUPiwv69vaiGPOZfymdm8sUj76DlwpunWs4qeiG9/NV6iGl+sXOull+4OtSfuOOec7tYv4XqpiYb9gZ3wK4RL943i8JUJ4ATAKRUDHWhJdAAAAAElFTkSuQmCC" width="16" height="16" alt="" /> -->
+								<svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="-2 -2 90 90" version="1.1">
+									<path fill="transparent" stroke="<?= $data_array[$container]['color_hex'] ?>" stroke-width="1" d="M 80 40 A 40 40 90 1 0 0 40 M 80 40 A 40 40 90 1 1 0 40 M 40 80 A 45 40 90 0 1 40 0 M 40 80 A 45 40 90 0 0 40 0 M 7.5 17 L 72.5 17 M 0 40 L 80 40 M 7.5 63 L 72.5 63" /> 
+								</svg>
 								<?php endif ?> 
 								<div class="item_link">
 						            <?php if(!empty($param['post_data'])): ?>
