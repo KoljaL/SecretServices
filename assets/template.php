@@ -74,7 +74,7 @@
 		<div class="message">
 			<?= $message ?>
 				<?php //pprint($debug_array, 0, 0, 0) ?>
-				<?php //pprint($data_array, 0, 0, 1) ?>
+				<?php pprint($data_array, 0, 0, 1) ?>
 				<?php //pprint($data, 0, 0, 0) ?>
 				<?php //pprint($_POST, 0, 0, 0) ?>
 		</div>

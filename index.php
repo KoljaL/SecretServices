@@ -73,6 +73,7 @@ if (isset($user_ID)) {
         delete_empty_files($dir_db);
         $content = '{
 		"config":   {"id": "M_001","type": "main","name": "SecretServices","position": "20", "User": "'.$name.'", "PW_Hash": "'.$pw_hash.'", "colorset": "dark", "grid_style": "grid"},
+        "color":    {"id": "S_001","type": "style","name": "Style","custom":{"container":{"color_1":["red","#ff5458"],"color_2":["salomon","#ff8080"],"color_3":["orange","#ffb378"],"color_4":["sienna","#ffe9aa"],"color_5":["green","#98C379"],"color_6":["lime","#62d196"],"color_7":["Blue","#09568d"],"color_8":["SteelBlue","#4682B4"],"color_9":["violett","#906cff"],"color_0":["mangenta","#c991e1"]},"site":{"bg_out":["Red","#1e1e1e"],"bg_in":["Red","#232323"],"bg_in_focus":["Red","#242424"],"border_fieldset":["Red","#808080"],"border_formfields":["Red","#00000060"],"font_label":["Red","#808080"],"font_text":["Red","#808080"],"font_error":["Red","#D35151"],"font_shaddow":["Red","#000000dd"],"icon_red":["Red","#500000"],"icon_red_ckeck":["Red","#FF5050"],"icon_blue":["Red","#09568d"]}}},
 		"C_167834": {"id": "C_167834","type": "container","name": "Mail","color": "color_1", "position": "20"},
 		"I_880623": {"id": "I_880623","type": "item","name": "Posteo.de","c_id": "C_167834","url": "http://posteo.de","notes": ""},
 		"I_840642": {"id": "I_840642","type": "item","name": "Protonmail.com","c_id": "C_167834","url": "https://protonmail.com/de","notes": ""},
@@ -91,6 +92,22 @@ if (isset($user_ID)) {
 	dummy_data();
 }
 /*_________________________________________________ GET_DATA _________________________________________________*/
+
+
+$color_array = array();
+foreach ($data as $item => $value) {
+    // build the main (config) information
+    if (isset($value['type']) && 'style' == $value['type']) {
+        foreach ($value as $ke => $va) {
+            if($ke == 'custom'){
+                $color_array[$ke] = $va;//['oneDark'];
+
+            }
+        }
+    }
+}
+// pprint($color_array);
+
 
 // pprint($_SESSION);
 // pprint($data);
@@ -276,6 +293,7 @@ if (isset($_POST['container']) && isset($user_ID)) {
 
 /*‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾ DATA_ARRAY ‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾*/
 foreach ($data as $key => $value) {
+    // pprint($value);
 	if($value['name'] == ''){
 		unset($data[$key]);
 	}
@@ -327,6 +345,10 @@ foreach ($data as $item => $value) {
 		}
     }
 }
+
+
+
+
 
 // SORT FUNCTION
 function array_orderby(){
@@ -486,7 +508,8 @@ function rand_id(){
 
 // COLORS 
 function color($color_set, $func = 'rand', $val = 'hex'){
-    $color_sets = array(
+    global $color_array;
+    $color_sets = array( 
         'bright' => array(
             'container' => array(
                 'color_1' => array('Red', '#800000'),
@@ -572,6 +595,13 @@ function color($color_set, $func = 'rand', $val = 'hex'){
             )
         )
     );
+
+    // $color_sets = $color_array + $color_sets;
+    if (is_array($color_array)){
+        $color_sets = array_merge($color_sets, $color_array);
+    }
+    // pprint($color_sets);
+    // print_r($color_array);
     $keys = array_keys($color_sets[$color_set]['container']);
     $count = count($color_sets[$color_set]['container']) - 1;
     switch ($func) {
