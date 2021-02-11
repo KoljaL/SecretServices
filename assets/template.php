@@ -82,8 +82,10 @@
 			<?php if($show_edit_json==true): ?>
 			<div class="edit_json">
 				<form action="<?= $url ?>" method="POST">
-					<button class="header_button">&#10004;</button>
-					<input type="text" name="searchin_json" onkeydown="return event.key != 'Enter';" oninput="search_in_json()" id="searchin_json">
+					
+					<input type="text" name="searchin_json" placeholder="search" onkeydown="return event.key != 'Enter';" oninput="search_in_json()" id="searchin_json">
+					<input type="button" class="header_button" style="font-weight: bold; padding-bottom: 4px;" id="dwn-btn" value="&#x2193;"/>
+					<button class="header_button" style="font-weight: bold; padding-bottom: 4px;">&#x1F5AB;</button>
 					<textarea id="edit_json" class="noscrollbar" name="edit_json" wrap="off" rows=30 cols=129></textarea>
 				</form>
 			</div>
