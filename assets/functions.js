@@ -4,9 +4,9 @@ document.getElementById('color_select').onchange = function () {
 	var strAtt = e.options[e.selectedIndex].getAttribute('id'); // will return the value
 	var strVal = e.options[e.selectedIndex].value; // will return the value
 	var strText = e.options[e.selectedIndex].text; // will return the text
-	console.log(strAtt);
-	console.log(strVal);
-	console.log(strText);
+	// console.log(strAtt);
+	// console.log(strVal);
+	// console.log(strText);
 	var list = document.getElementsByClassName("change_color");
 	document.getElementById("hr").style.background = strAtt;
 	for (var i = 0; i < list.length; i++) {
@@ -24,7 +24,7 @@ document.getElementById("container_select").onchange = function () {
 	var select_value = document.getElementById("container_select").value;
 	// set input value with pulldown value
 	document.getElementById("container_input").value = select_value;
-	console.log("container_select " + select_value);
+	// console.log("container_select " + select_value);
 }
 // DROPDOWN CONTAINERNAME TO INPUT TEXT
 
@@ -270,10 +270,7 @@ if (('ontouchstart' in window) == true){
 
 
 (function() {
-  
   "use strict";
-  // H E L P E R    F U N C T I O N S
-
   /**
    * Function to check if we clicked inside an element with a particular class
    * name.
@@ -307,9 +304,7 @@ if (('ontouchstart' in window) == true){
   function getPosition(e) {
     var posx = 0;
     var posy = 0;
-
     if (!e) var e = window.event;
-    
     if (e.pageX || e.pageY) {
       posx = e.pageX;
       posy = e.pageY;
@@ -317,7 +312,6 @@ if (('ontouchstart' in window) == true){
       posx = e.clientX + document.body.scrollLeft + document.documentElement.scrollLeft;
       posy = e.clientY + document.body.scrollTop + document.documentElement.scrollTop;
     }
-
     return {
       x: posx,
       y: posy
@@ -331,15 +325,12 @@ if (('ontouchstart' in window) == true){
   var contextMenuItemClassName = "context-menu__item";
   var contextMenuLinkClassName = "context-menu__link";
   var contextMenuActive = "context-menu--active";
-
   var taskItemClassName = "task";
   var taskItemInContext;
 	var item_ID;
-
   var clickCoords;
   var clickCoordsX;
   var clickCoordsY;
-
   var menu = document.querySelector("#context-menu");
   var menuItems = menu.querySelectorAll(".context-menu__item");
   var menuState = 0;
@@ -348,7 +339,6 @@ if (('ontouchstart' in window) == true){
   var menuPosition;
   var menuPositionX;
   var menuPositionY;
-
   var windowWidth;
   var windowHeight;
 
@@ -368,32 +358,17 @@ if (('ontouchstart' in window) == true){
   function contextListener() {
     document.addEventListener( "contextmenu", function(e) {
 	  taskItemInContext = clickInsideElement( e, taskItemClassName );
-
 		if (taskItemInContext){
 			item_ID = taskItemInContext.getAttribute("data-id");
 		}
-
-
-    console.table(item_ID);
-    
-
-
-      if (taskItemInContext) {
-        item_ID = taskItemInContext.getAttribute("data-id");
-      }
-
+    // console.table(item_ID);
+      // if (taskItemInContext) {
+      //   item_ID = taskItemInContext.getAttribute("data-id");
+      // }
       var logger = document.getElementById('context-menu');
       logger.innerHTML = '<label class="tooltip icon" onmousedown="show_tooltip(\'' + item_ID +'\');">&nbsp;  &#128462;</label>&nbsp;';
       logger.innerHTML += '<form action="" method="post"><button type="submit" name="edit" value="' + item_ID + '" class="icon">✎</button></form>';
-      console.table(item_ID);
-
-
-
-
-       
-
-
-
+      // console.table(item_ID);
       if ( taskItemInContext ) {
         e.preventDefault();
         toggleMenuOn();
@@ -411,7 +386,6 @@ if (('ontouchstart' in window) == true){
   function clickListener() {
     document.addEventListener( "click", function(e) {
       var clickeElIsLink = clickInsideElement( e, contextMenuLinkClassName );
-
       if ( clickeElIsLink ) {
         e.preventDefault();
         menuItemListener( clickeElIsLink );
@@ -473,19 +447,16 @@ if (('ontouchstart' in window) == true){
     clickCoords = getPosition(e);
     clickCoordsX = clickCoords.x+10;
     clickCoordsY = clickCoords.y-13;
-	console.table(clickCoords);
+	// console.table(clickCoords);
     menuWidth = menu.offsetWidth + 4;
     menuHeight = menu.offsetHeight + 4;
-
     windowWidth = window.innerWidth;
     windowHeight = window.innerHeight;
-
     if ( (windowWidth - clickCoordsX) < menuWidth ) {
       menu.style.left = windowWidth - menuWidth + "px";
     } else {
       menu.style.left = clickCoordsX + "px";
     }
-
     if ( (windowHeight - clickCoordsY) < menuHeight ) {
       menu.style.top = windowHeight - menuHeight + "px";
     } else {

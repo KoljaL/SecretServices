@@ -1,4 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 80 80" version="1.1">
-    <path fill="transparent" stroke="black" stroke-width="1.5" d="M 80 40 A 40 40 90 1 0 0 40 M 80 40 A 40 40 90 1 1 0 40 M 40 80 A 45 40 90 0 1 40 0 M 40 80 A 45 40 90 0 0 40 0 M 7.5 17 L 72.5 17 M 0 40 L 80 40 M 7.5 63 L 72.5 63" /> 
+    <path fill="transparent" stroke="black" stroke-width="1" d="M 80 40 A 40 40 90 1 0 0 40 M 80 40 A 40 40 90 1 1 0 40 M 40 80 A 45 40 90 0 1 40 0 M 40 80 A 45 40 90 0 0 40 0 M 7.5 17 L 72.5 17 M 0 40 L 80 40 M 7.5 63 L 72.5 63" /> 
 </svg>
