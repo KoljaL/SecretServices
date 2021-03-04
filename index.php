@@ -593,6 +593,34 @@ function color($color_set, $func = 'rand', $val = 'hex'){
                 'icon_red_ckeck' => array('Red', '#FF5050'),
                 'icon_blue' => array('Red', '#09568d')
             )
+            ),
+        'TNG' => array(
+            'container' => array(
+                'color_1' => array('Sizzling Red', '#CC6699'),
+                'color_2' => array('Fiery Rose', '#CC6666'),
+                'color_3' => array('Heat Wave', '#FF9966'),
+                'color_4' => array('Sizzling Sunrise', '#6688CC'),
+                'color_5' => array('Slimy Green', '#4455BB'),
+                'color_6' => array('Green Lizard', '#AA5533'),
+                'color_7' => array('Denim Blue', '#BB6622'),
+                'color_8' => array('Blue Jeans', '#006699'),
+                'color_9' => array('Purple Plum', '#9999FF'),
+                'color_0' => array('Frostbite', '#EE9955')
+            ),
+            'site' => array(
+                'bg_out' => array('Red', '#0f0f0f'),
+                'bg_in' => array('Red', '#131313'),
+                'bg_in_focus' => array('Red', '#1e1e1e'),
+                'border_fieldset' => array('Red', '#000000'),
+                'border_formfields' => array('Red', '#000000'),
+                'font_label' => array('Red', '#808080'),
+                'font_text' => array('Red', '#808080'),
+                'font_error' => array('Red', '#D35151'),
+                'font_shaddow' => array('Red', '#000000dd'),
+                'icon_red' => array('Red', '#500000'),
+                'icon_red_ckeck' => array('Red', '#FF5050'),
+                'icon_blue' => array('Red', '#09568d')
+            )
         )
     );
 

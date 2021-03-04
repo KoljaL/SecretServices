@@ -1,18 +1,18 @@
 // CHANGE COLOR
 document.getElementById('color_select').onchange = function () {
-	var e = document.getElementById("color_select");
-	var strAtt = e.options[e.selectedIndex].getAttribute('id'); // will return the value
-	var strVal = e.options[e.selectedIndex].value; // will return the value
-	var strText = e.options[e.selectedIndex].text; // will return the text
-	// console.log(strAtt);
-	// console.log(strVal);
-	// console.log(strText);
-	var list = document.getElementsByClassName("change_color");
-	document.getElementById("hr").style.background = strAtt;
-	for (var i = 0; i < list.length; i++) {
-		list[i].style.color = strAtt;
-		list[i].style.borderColor = strAtt;
-	}
+  var e = document.getElementById("color_select");
+  var strAtt = e.options[e.selectedIndex].getAttribute('id'); // will return the value
+  var strVal = e.options[e.selectedIndex].value; // will return the value
+  var strText = e.options[e.selectedIndex].text; // will return the text
+  // console.log(strAtt);
+  // console.log(strVal);
+  // console.log(strText);
+  var list = document.getElementsByClassName("change_color");
+  document.getElementById("hr").style.background = strAtt;
+  for (var i = 0; i < list.length; i++) {
+    list[i].style.color = strAtt;
+    list[i].style.borderColor = strAtt;
+  }
 }
 // CHANGE COLOR
 
@@ -20,11 +20,11 @@ document.getElementById('color_select').onchange = function () {
 
 // DROPDOWN CONTAINERNAME TO INPUT TEXT
 document.getElementById("container_select").onchange = function () {
-	// get selected value from pulldown
-	var select_value = document.getElementById("container_select").value;
-	// set input value with pulldown value
-	document.getElementById("container_input").value = select_value;
-	// console.log("container_select " + select_value);
+  // get selected value from pulldown
+  var select_value = document.getElementById("container_select").value;
+  // set input value with pulldown value
+  document.getElementById("container_input").value = select_value;
+  // console.log("container_select " + select_value);
 }
 // DROPDOWN CONTAINERNAME TO INPUT TEXT
 
@@ -32,14 +32,14 @@ document.getElementById("container_select").onchange = function () {
 
 // set color by clicking the containername dropdown
 function setColor(name, color, c_id) {
-	document.getElementById("color_select").value = color;
-	document.getElementById("c_id").value = c_id;
-	var list = document.getElementsByClassName("change_color");
-	document.getElementById("hr").style.background = color;
-	for (var i = 0; i < list.length; i++) {
-		list[i].style.color = color;
-		list[i].style.borderColor = color;
-	}
+  document.getElementById("color_select").value = color;
+  document.getElementById("c_id").value = c_id;
+  var list = document.getElementsByClassName("change_color");
+  document.getElementById("hr").style.background = color;
+  for (var i = 0; i < list.length; i++) {
+    list[i].style.color = color;
+    list[i].style.borderColor = color;
+  }
 }
 // set color by clicking the containername dropdown
 
@@ -48,7 +48,7 @@ function setColor(name, color, c_id) {
 // ALLOW LINEBREAKS IN TEXTAREAS PLACEHOLDERS
 var textAreas = document.getElementsByTagName("textarea");
 Array.prototype.forEach.call(textAreas, function (elem) {
-	elem.placeholder = elem.placeholder.replace(/\\n/g, "\n");
+  elem.placeholder = elem.placeholder.replace(/\\n/g, "\n");
 });
 
 
@@ -56,23 +56,23 @@ Array.prototype.forEach.call(textAreas, function (elem) {
 var the_div = document.getElementsByTagName("body")[0];
 var clickCount = 0;
 the_div.addEventListener(
-	"click",
-	function () {
-		clickCount++;
-		if (clickCount === 1) {
-			singleClickTimer = setTimeout(function () {
-				clickCount = 0;
-			}, 400);
-		} else if (clickCount === 3) {
-			clearTimeout(singleClickTimer);
-			clickCount = 0;
-			window.location.reload(true);
-			console.log({
-				the_div
-			});
-		}
-	},
-	false
+  "click",
+  function () {
+    clickCount++;
+    if (clickCount === 1) {
+      singleClickTimer = setTimeout(function () {
+        clickCount = 0;
+      }, 400);
+    } else if (clickCount === 3) {
+      clearTimeout(singleClickTimer);
+      clickCount = 0;
+      window.location.reload(true);
+      console.log({
+        the_div
+      });
+    }
+  },
+  false
 );
 
 
@@ -81,27 +81,27 @@ the_div.addEventListener(
 
 
 function validateForm() {
-	var url_input = document.getElementById('url_input');
-	var name_input = document.getElementById('name_input');
-	var container_del = document.getElementById('container_del');
-	var container_input = document.getElementById('container_input');
-	var item_del = document.getElementById('item_del');
-	// console.log("validateForm:");
-	// console.log("container_del.value"+container_del.checked +"");
-	// console.log("item_del.value"+item_del.checked +"");
-	if (name_input.value.length < 2 && url_input.value !== '') {
-		name_input.value = "";
-		name_input.placeholder = "bitte eintragen";
-		return false;
-	} else {
-		if (container_del.checked == true) {
-			return confirm("Are you sure you want to delete the Container " + container_input.value + " with all items?");
-		}
-		if (item_del.checked == true) {
-			return confirm("Are you sure you want to delete the item: " + name_input.value);
-		}
-		// return true;
-	}
+  var url_input = document.getElementById('url_input');
+  var name_input = document.getElementById('name_input');
+  var container_del = document.getElementById('container_del');
+  var container_input = document.getElementById('container_input');
+  var item_del = document.getElementById('item_del');
+  // console.log("validateForm:");
+  // console.log("container_del.value"+container_del.checked +"");
+  // console.log("item_del.value"+item_del.checked +"");
+  if (name_input.value.length < 2 && url_input.value !== '') {
+    name_input.value = "";
+    name_input.placeholder = "bitte eintragen";
+    return false;
+  } else {
+    if (container_del.checked == true) {
+      return confirm("Are you sure you want to delete the Container " + container_input.value + " with all items?");
+    }
+    if (item_del.checked == true) {
+      return confirm("Are you sure you want to delete the item: " + name_input.value);
+    }
+    // return true;
+  }
 }
 
 
@@ -110,40 +110,40 @@ var minutes, seconds, counter, timer;
 // count = <?= $session_lenght ?>; //seconds
 counter = setInterval(timer, 10000);
 function timer() {
-	"use strict";
-	count = count - 10;
-	minutes = Math.floor(count / 60);
-	seconds = count - minutes * 60;
-	document.getElementById("timer").innerHTML = "Session: " + minutes + ":" + seconds;
-	if (count < 0) {
-		clearInterval(counter);
-		return;
-	}
-	if (count === 0) {
-		document.getElementById('logout').submit();
-		// location.reload();
-	}
+  "use strict";
+  count = count - 10;
+  minutes = Math.floor(count / 60);
+  seconds = count - minutes * 60;
+  document.getElementById("timer").innerHTML = "Session: " + minutes + ":" + seconds;
+  if (count < 0) {
+    clearInterval(counter);
+    return;
+  }
+  if (count === 0) {
+    document.getElementById('logout').submit();
+    // location.reload();
+  }
 }
 
 
 // EDIT_JSON_IN_TEXTAREA
 function edit_json() {
-	// var myJsObj = <?= json_encode($data) ?>;
-	var str = JSON.stringify(myJsObj, undefined, 4);
-	document.getElementById('edit_json').innerHTML = str;
+  // var myJsObj = <?= json_encode($data) ?>;
+  var str = JSON.stringify(myJsObj, undefined, 4);
+  document.getElementById('edit_json').innerHTML = str;
 }
 // SEARCH_JSON_IN_TEXTAREA
 function search_in_json() {
-	var SearchTerm = document.getElementById("searchin_json").value;
-	var textArea = document.getElementById("edit_json");
-	var lines = textArea.value.split("\n");
-	for (var j = 0; j < lines.length; j++) {
-		if (SearchTerm.length > 0 && lines[j].indexOf(SearchTerm) > -1) {
-			var lineHeight = textArea.clientHeight / textArea.rows;
-			var jump = (j - 1) * lineHeight;
-			textArea.scrollTop = jump;
-		}
-	}
+  var SearchTerm = document.getElementById("searchin_json").value;
+  var textArea = document.getElementById("edit_json");
+  var lines = textArea.value.split("\n");
+  for (var j = 0; j < lines.length; j++) {
+    if (SearchTerm.length > 0 && lines[j].indexOf(SearchTerm) > -1) {
+      var lineHeight = textArea.clientHeight / textArea.rows;
+      var jump = (j - 1) * lineHeight;
+      textArea.scrollTop = jump;
+    }
+  }
 }
 
 // Download_JSON_IN_TEXTAREA
@@ -161,75 +161,77 @@ function download(filename, text) {
 }
 
 // Start file download.
-document.getElementById("dwn-btn").addEventListener("click", function () {
-  // Generate download of hello.txt file with some content
+var dwn = document.getElementById('dwn-btn');
+if (dwn) {
+  dwn.addEventListener('click', function () {
   var text = document.getElementById("edit_json").value;
   var filename = "secure.json";
-
   download(filename, text);
-}, false);
+  }, false);
+}
+
 
 
 
 function RGBToHex(rgb) {
-	let sep = rgb.indexOf(",") > -1 ? "," : " ";
-	rgb = rgb.substr(4).split(")")[0].split(sep);
-	let r = (+rgb[0]).toString(16),
-		g = (+rgb[1]).toString(16),
-		b = (+rgb[2]).toString(16);
-	if (r.length == 1)
-		r = "0" + r;
-	if (g.length == 1)
-		g = "0" + g;
-	if (b.length == 1)
-		b = "0" + b;
-	return "#" + r + g + b;
+  let sep = rgb.indexOf(",") > -1 ? "," : " ";
+  rgb = rgb.substr(4).split(")")[0].split(sep);
+  let r = (+rgb[0]).toString(16),
+    g = (+rgb[1]).toString(16),
+    b = (+rgb[2]).toString(16);
+  if (r.length == 1)
+    r = "0" + r;
+  if (g.length == 1)
+    g = "0" + g;
+  if (b.length == 1)
+    b = "0" + b;
+  return "#" + r + g + b;
 }
 
 
 function item_search() {
-	document.getElementById('search_results').innerHTML = '';
-	var name = document.getElementById("item_search").value;
-	var pattern = name.toLowerCase();
-	var item = document.getElementsByClassName("item");
-	if (pattern.length > 0) {
-		var link = '';
-		var tooltip = '';
-		var item_edit = '';
-		// console.table(item);
-		for (var i = 0; i < item.length; i++) {
-			if (item[i].innerText.toLowerCase().indexOf(pattern) > -1) {
-				var color = RGBToHex(window.getComputedStyle(item[i], null).getPropertyValue("color"));
-				var link = item[i].innerHTML;
-				// console.table(item[i].innerHTML);
-				document.getElementById('search_results').innerHTML += ' <div class="item_search" style="color:' + color + '">' + link + '</div>';
-				document.getElementById('search_frame').style.display = 'block';
-				if (i > 10) { break; }
-			}
-		}
-		if (link == '') { document.getElementById('search_results').innerHTML = 'no results<br>'; }
-	}
-	else { document.getElementById('search_frame').style.display = 'none'; }
+  document.getElementById('search_results').innerHTML = '';
+  var name = document.getElementById("item_search").value;
+  var pattern = name.toLowerCase();
+  var item = document.getElementsByClassName("item");
+  if (pattern.length > 0) {
+    var link = '';
+    var tooltip = '';
+    var item_edit = '';
+    // console.table(item);
+    for (var i = 0; i < item.length; i++) {
+      if (item[i].innerText.toLowerCase().indexOf(pattern) > -1) {
+        var color = RGBToHex(window.getComputedStyle(item[i], null).getPropertyValue("color"));
+        var link = item[i].innerHTML;
+        // console.table(item[i].innerHTML);
+        document.getElementById('search_results').innerHTML += ' <div class="item_search" style="color:' + color + '">' + link + '</div>';
+        document.getElementById('search_frame').style.display = 'block';
+        if (i > 10) { break; }
+      }
+    }
+    if (link == '') { document.getElementById('search_results').innerHTML = 'no results<br>'; }
+  }
+  else { document.getElementById('search_frame').style.display = 'none'; }
 }
 
 
 
 // SHOW TOOLTIP 
 function show_tooltip(ID) {
-	var element = document.getElementById(ID);
-	// console.log('Before');
-	// console.log(element);
-	// console.table(element.style.visibility); 
-	if (element.style.visibility === "hidden" || element.style.visibility === "") {
-		element.style.visibility = "visible";
-		element.style.opacity = 1;
-	} else {
-		element.style.visibility = "hidden";
-		element.style.opacity = 0;
-	}
-	// console.log('After');
-	// console.log(element);
-	// console.table(element.style.visibility); 
+  var element = document.getElementById(ID);
+  // console.log('Before');
+  // console.log(element);
+  // console.table(element.style.visibility); 
+  if (element.style.visibility === "hidden" || element.style.visibility === "") {
+    element.style.visibility = "visible";
+    element.style.opacity = 1;
+  } else {
+    element.style.visibility = "hidden";
+    element.style.opacity = 0;
+  }
+  // console.log('After');
+  // console.log(element);
+  // console.table(element.style.visibility); 
 }
 
 
@@ -244,11 +246,11 @@ function show_tooltip(ID) {
 // var touch = isTouchDevice();
 // console.log(touch);
 
-if (('ontouchstart' in window) == true){
+if (('ontouchstart' in window) == true) {
   var noTouch = document.getElementsByClassName('no_touch_device');
   noTouch.style.visibility = "visible";
   console.log('touch');
-} else{
+} else {
   console.log('no_touch');
 }
 
@@ -290,7 +292,7 @@ if (('ontouchstart' in window) == true){
 
 
 
-(function() {
+(function () {
   "use strict";
   /**
    * Function to check if we clicked inside an element with a particular class
@@ -300,14 +302,14 @@ if (('ontouchstart' in window) == true){
    * @param {String} className The class name to check against
    * @return {Boolean}
    */
-  function clickInsideElement( e, className ) {
+  function clickInsideElement(e, className) {
     var el = e.srcElement || e.target;
-    
-    if ( el.classList.contains(className) ) {
+
+    if (el.classList.contains(className)) {
       return el;
     } else {
-      while ( el = el.parentNode ) {
-        if ( el.classList && el.classList.contains(className) ) {
+      while (el = el.parentNode) {
+        if (el.classList && el.classList.contains(className)) {
           return el;
         }
       }
@@ -348,7 +350,7 @@ if (('ontouchstart' in window) == true){
   var contextMenuActive = "context-menu--active";
   var taskItemClassName = "task";
   var taskItemInContext;
-	var item_ID;
+  var item_ID;
   var clickCoords;
   var clickCoordsX;
   var clickCoordsY;
@@ -377,20 +379,20 @@ if (('ontouchstart' in window) == true){
    * Listens for contextmenu events.
    */
   function contextListener() {
-    document.addEventListener( "contextmenu", function(e) {
-	  taskItemInContext = clickInsideElement( e, taskItemClassName );
-		if (taskItemInContext){
-			item_ID = taskItemInContext.getAttribute("data-id");
-		}
-    // console.table(item_ID);
+    document.addEventListener("contextmenu", function (e) {
+      taskItemInContext = clickInsideElement(e, taskItemClassName);
+      if (taskItemInContext) {
+        item_ID = taskItemInContext.getAttribute("data-id");
+      }
+      // console.table(item_ID);
       // if (taskItemInContext) {
       //   item_ID = taskItemInContext.getAttribute("data-id");
       // }
       var logger = document.getElementById('context-menu');
-      logger.innerHTML = '<label class="tooltip icon" onmousedown="show_tooltip(\'' + item_ID +'\');">&nbsp;  &#128462;</label>&nbsp;';
+      logger.innerHTML = '<label class="tooltip icon" onmousedown="show_tooltip(\'' + item_ID + '\');">&nbsp;  &#128462;</label>&nbsp;';
       logger.innerHTML += '<form action="" method="post"><button type="submit" name="edit" value="' + item_ID + '" class="icon">✎</button></form>';
       // console.table(item_ID);
-      if ( taskItemInContext ) {
+      if (taskItemInContext) {
         e.preventDefault();
         toggleMenuOn();
         positionMenu(e);
@@ -405,14 +407,14 @@ if (('ontouchstart' in window) == true){
    * Listens for click events.
    */
   function clickListener() {
-    document.addEventListener( "click", function(e) {
-      var clickeElIsLink = clickInsideElement( e, contextMenuLinkClassName );
-      if ( clickeElIsLink ) {
+    document.addEventListener("click", function (e) {
+      var clickeElIsLink = clickInsideElement(e, contextMenuLinkClassName);
+      if (clickeElIsLink) {
         e.preventDefault();
-        menuItemListener( clickeElIsLink );
+        menuItemListener(clickeElIsLink);
       } else {
         var button = e.which || e.button;
-        if ( button === 1 ) {
+        if (button === 1) {
           toggleMenuOff();
         }
       }
@@ -423,8 +425,8 @@ if (('ontouchstart' in window) == true){
    * Listens for keyup events.
    */
   function keyupListener() {
-    window.onkeyup = function(e) {
-      if ( e.keyCode === 27 ) {
+    window.onkeyup = function (e) {
+      if (e.keyCode === 27) {
         toggleMenuOff();
       }
     }
@@ -434,7 +436,7 @@ if (('ontouchstart' in window) == true){
    * Window resize event listener
    */
   function resizeListener() {
-    window.onresize = function(e) {
+    window.onresize = function (e) {
       toggleMenuOff();
     };
   }
@@ -443,9 +445,9 @@ if (('ontouchstart' in window) == true){
    * Turns the custom context menu on.
    */
   function toggleMenuOn() {
-    if ( menuState !== 1 ) {
+    if (menuState !== 1) {
       menuState = 1;
-      menu.classList.add( contextMenuActive );
+      menu.classList.add(contextMenuActive);
     }
   }
 
@@ -453,9 +455,9 @@ if (('ontouchstart' in window) == true){
    * Turns the custom context menu off.
    */
   function toggleMenuOff() {
-    if ( menuState !== 0 ) {
+    if (menuState !== 0) {
       menuState = 0;
-      menu.classList.remove( contextMenuActive );
+      menu.classList.remove(contextMenuActive);
     }
   }
 
@@ -466,19 +468,19 @@ if (('ontouchstart' in window) == true){
    */
   function positionMenu(e) {
     clickCoords = getPosition(e);
-    clickCoordsX = clickCoords.x+10;
-    clickCoordsY = clickCoords.y-13;
-	// console.table(clickCoords);
+    clickCoordsX = clickCoords.x + 10;
+    clickCoordsY = clickCoords.y - 13;
+    // console.table(clickCoords);
     menuWidth = menu.offsetWidth + 4;
     menuHeight = menu.offsetHeight + 4;
     windowWidth = window.innerWidth;
     windowHeight = window.innerHeight;
-    if ( (windowWidth - clickCoordsX) < menuWidth ) {
+    if ((windowWidth - clickCoordsX) < menuWidth) {
       menu.style.left = windowWidth - menuWidth + "px";
     } else {
       menu.style.left = clickCoordsX + "px";
     }
-    if ( (windowHeight - clickCoordsY) < menuHeight ) {
+    if ((windowHeight - clickCoordsY) < menuHeight) {
       menu.style.top = windowHeight - menuHeight + "px";
     } else {
       menu.style.top = clickCoordsY + "px";
@@ -490,8 +492,8 @@ if (('ontouchstart' in window) == true){
    * 
    * @param {HTMLElement} link The link that was clicked
    */
-  function menuItemListener( link ) {
-    console.log( "Task ID - " + taskItemInContext.getAttribute("data-id") + ", Task action - " + link.getAttribute("data-action"));
+  function menuItemListener(link) {
+    console.log("Task ID - " + taskItemInContext.getAttribute("data-id") + ", Task action - " + link.getAttribute("data-action"));
     toggleMenuOff();
   }
 
@@ -507,7 +509,7 @@ if (('ontouchstart' in window) == true){
 
 
 
- 
+
 
 
 
